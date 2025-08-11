@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beauty Cosmetics - Giỏ hàng</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/cart.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header giống trang chủ -->
+    <header>
+        <div class="top-bar">
+            <div class="container">
+                <div class="top-links">
+                    <a href="contact.html"><i class="fas fa-phone"></i> +84 123 456 789</a>
+                    <a href="contact.html"><i class="fas fa-envelope"></i> info@beautycosmetics.com</a>
+                </div>
+                <div class="auth-links">
+                    <a href="login.html" id="loginLink"><i class="fas fa-user"></i> Đăng nhập</a>
+                    <a href="profile.html" id="profileLink" style="display: none;"><i class="fas fa-user-circle"></i> Tài khoản</a>
+                    <a href="profile.html"><i class="fas fa-heart"></i> Yêu thích</a>
+                </div>
+            </div>
+        </div>
+        <nav class="main-nav">
+            <div class="container">
+                <div class="logo">
+                    <a href="index.html">BEAUTY</a>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="index.html">Trang chủ</a></li>
+                    <li><a href="index.html#products">Sản phẩm</a></li>
+                    <li><a href="index.html#promotions">Khuyến mãi</a></li>
+                    <li><a href="index.html#about">Về chúng tôi</a></li>
+                    <li><a href="contact.html">Liên hệ</a></li>
+                </ul>
+                <div class="nav-icons">
+                    <a href="#"><i class="fas fa-search"></i></a>
+                    <a href="cart.html"><i class="fas fa-shopping-bag"></i><span class="cart-count">0</span></a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="cart-page">
+        <div class="container">
+            <h1 class="page-title">Giỏ hàng của tôi</h1>
+            
+            <div class="cart-container">
+                <div class="cart-items">
+                    <div class="cart-header">
+                        <div>Sản phẩm</div>
+                        <div>Đơn giá</div>
+                        <div>Số lượng</div>
+                        <div>Thành tiền</div>
+                        <div></div>
+                    </div>
+                    
+                    <!-- Cart items will be loaded here by JavaScript -->
+                    <div id="cartItemsContainer">
+                        <!-- Empty cart state -->
+                        <div class="cart-empty" id="emptyCartState">
+                            <div style="text-align: center; padding: 60px 20px;">
+                                <i class="fas fa-shopping-cart" style="font-size: 4rem; color: #95a5a6; margin-bottom: 20px;"></i>
+                                <h2 style="color: #2c3e50; margin-bottom: 15px; font-size: 1.8rem;">Giỏ hàng trống</h2>
+                                <p style="color: #95a5a6; margin-bottom: 30px; font-size: 1.1rem;">Bạn chưa có sản phẩm nào trong giỏ hàng</p>
+                                <a href="index.html" class="btn" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; padding: 15px 30px; border-radius: 15px; font-size: 16px; font-weight: 600; cursor: pointer; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3); text-decoration: none; display: inline-block;">
+                                    <i class="fas fa-shopping-bag" style="margin-right: 10px;"></i>
+                                    Tiếp tục mua sắm
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Cart summary -->
+                <div class="cart-summary" id="cartSummary" style="display: none;">
+                    <h2>Thông tin đơn hàng</h2>
+                    
+                    <div class="summary-row">
+                        <span>Tạm tính</span>
+                        <span id="subtotal">0đ</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Phí vận chuyển</span>
+                        <span id="shipping">0đ</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Giảm giá</span>
+                        <span id="discount" style="color: #e74c3c;">0đ</span>
+                    </div>
+                    <div class="summary-row total">
+                        <span>Tổng cộng</span>
+                        <span id="total">0đ</span>
+                    </div>
+                    
+                    <button class="btn-checkout" id="checkoutBtn" disabled>
+                        <i class="fas fa-credit-card" style="margin-right: 10px;"></i>
+                        Thanh toán ngay
+                    </button>
+                    
+                    <div class="payment-methods">
+                        <h3>Phương thức thanh toán</h3>
+                        <div class="methods" style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 10px;">
+                            <label style="display: flex; align-items: center; gap: 8px; font-size: 15px; cursor: pointer;">
+                                <input type="radio" name="payment" value="Chuyển khoản ngân hàng" style="accent-color: #667eea;"> Chuyển khoản ngân hàng
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 8px; font-size: 15px; cursor: pointer;">
+                                <input type="radio" name="payment" value="Thanh toán khi nhận hàng" style="accent-color: #667eea;"> Thanh toán khi nhận hàng
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <!-- Coupon Section -->
+                    <div style="margin-top: 30px; padding-top: 25px; border-top: 2px solid #e9ecef;">
+                        <h3 style="font-size: 16px; font-weight: 600; margin-bottom: 15px; color: #2c3e50; text-align: center;">
+                            <i class="fas fa-tag" style="color: #667eea; margin-right: 10px;"></i>
+                            Mã giảm giá
+                        </h3>
+                        <div style="display: flex; gap: 10px;">
+                            <input type="text" placeholder="Nhập mã giảm giá" id="couponInput" style="flex: 1; padding: 12px 20px; border: 2px solid #e9ecef; border-radius: 15px; font-size: 14px; background: rgba(255,255,255,0.8); backdrop-filter: blur(10px); color: #2c3e50;">
+                            <button id="applyCouponBtn" style="padding: 12px 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; border-radius: 15px; cursor: pointer; font-weight: 600; transition: all 0.3s ease;">
+                                Áp dụng
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Thêm sau phần cart-summary -->
+                <div id="invoice" style="display:none; margin-top:30px; background:#fff; border-radius:15px; box-shadow:0 4px 20px rgba(0,0,0,0.08); padding:30px;">
+                  <h3>HÓA ĐƠN</h3>
+                  <div id="invoice-details"></div>
+                </div>
+                <div id="bankQr" style="display:none; margin:15px 0 20px 0; text-align:center;">
+    <img src="../img/qr-bank-demo.png" alt="QR chuyển khoản ngân hàng" style="width:180px; height:180px; border-radius:12px; box-shadow:0 2px 10px rgba(0,0,0,0.08); margin-bottom:10px;">
+    <div style="font-size:14px; color:#2c3e50; margin-top:5px;">Quét mã QR để chuyển khoản cho shop</div>
+    <div style="font-size:13px; color:#888;">Nội dung chuyển khoản: <b>Họ tên + SĐT</b></div>
+</div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer giống trang chủ -->
+    <footer>
+        <div class="footer-top">
+            <div class="container">
+                <div class="footer-column">
+                    <h4>Về chúng tôi</h4>
+                    <ul>
+                        <li><a href="#">Câu chuyện thương hiệu</a></li>
+                        <li><a href="#">Tuyển dụng</a></li>
+                        <li><a href="#">Tin tức & Sự kiện</a></li>
+                        <li><a href="#">Chính sách bảo mật</a></li>
+                        <li><b>Địa chỉ:</b> 123 Đường ABC, Quận 1, TP.HCM</li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Dịch vụ khách hàng</h4>
+                    <ul>
+                        <li><a href="contact.html">Liên hệ chúng tôi</a></li>
+                        <li><a href="#">Câu hỏi thường gặp</a></li>
+                        <li><a href="#">Hướng dẫn mua hàng</a></li>
+                        <li><a href="#">Chính sách đổi trả</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Sản phẩm</h4>
+                    <ul>
+                        <li><a href="#">Chăm sóc da</a></li>
+                        <li><a href="#">Trang điểm</a></li>
+                        <li><a href="#">Nước hoa</a></li>
+                        <li><a href="#">Chăm sóc tóc</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Theo dõi chúng tôi</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                    <div class="newsletter-form">
+                        <input type="email" placeholder="Nhập email của bạn">
+                        <button type="submit">Đăng ký</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>© 2025 Beauty Cosmetics. All rights reserved.</p>
+                <div class="payment-methods">
+                    <img src="/images/logo_VCB_828891.jpg" alt="FileUp">
+                    <img src="/images/y-nghia-logo-mb-bank-2.jpg" alt="FileUp">
+                    <img src="/images/0e3349ab85ae5ebf604df3cb380f9c8f.jpg" alt="FileUp">
+                    <img src="/images/logo-techcombank-dongphucvina.vn_.png" alt="FileUp">
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/cart.js"></script>
+    <script>
+// Hàm tạo mã đơn hàng ngẫu nhiên
+function generateOrderId() {
+  return 'BC' + Date.now() + Math.floor(Math.random() * 1000);
+}
+// Khi nhấn nút thanh toán
+const checkoutBtn = document.getElementById('checkoutBtn');
+if (checkoutBtn) {
+  checkoutBtn.addEventListener('click', function() {
+    // Lấy thông tin sản phẩm từ giỏ hàng (ví dụ)
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    // Lấy thông tin khách hàng từ localStorage hoặc form
+    const user = JSON.parse(localStorage.getItem('userInfo')) || {};
+    // Lấy phương thức thanh toán (giả lập)
+    let paymentMethod = 'Chưa chọn';
+    const paymentRadios = document.querySelectorAll('input[name="payment"]');
+    paymentRadios.forEach(r => { if(r.checked) paymentMethod = r.value; });
+    // Lấy mã giảm giá, tổng tiền, phí ship...
+    const discount = 0; // tuỳ logic của bạn
+    const shipping = 30000;
+    const subtotal = cart.reduce((sum, item) => sum + (item.price || 0) * (item.quantity || 1), 0);
+    const total = subtotal + shipping - discount;
+    // Tạo mã đơn hàng và thời gian
+    const orderId = generateOrderId();
+    const orderTime = new Date().toLocaleString();
+    // Tạo HTML hóa đơn
+    let html = `
+      <p><b>Mã đơn hàng:</b> ${orderId}</p>
+      <p><b>Thời gian đặt:</b> ${orderTime}</p>
+      <p><b>Khách hàng:</b> ${user.name || ''} - ${user.phone || ''} - ${user.address || ''}</p>
+      <p><b>Phương thức thanh toán:</b> ${paymentMethod}</p>
+      <hr>
+      <b>Danh sách sản phẩm:</b>
+      <ul>
+        ${cart.map(item => `<li>${item.name} x${item.quantity || 1} - ${(item.price || 0).toLocaleString()}đ</li>`).join('')}
+      </ul>
+      <p><b>Tạm tính:</b> ${subtotal.toLocaleString()}đ</p>
+      <p><b>Phí vận chuyển:</b> ${shipping.toLocaleString()}đ</p>
+      <p><b>Giảm giá:</b> -${discount.toLocaleString()}đ</p>
+      <p><b>Tổng cộng:</b> <span style="color:#667eea;font-weight:700;">${total.toLocaleString()}đ</span></p>
+    `;
+    document.getElementById('invoice-details').innerHTML = html;
+    document.getElementById('invoice').style.display = 'block';
+    // Cuộn tới hóa đơn
+    document.getElementById('invoice').scrollIntoView({behavior: 'smooth'});
+  });
+}
+// Hiện/ẩn mã QR khi chọn phương thức thanh toán
+const paymentRadios = document.querySelectorAll('input[name="payment"]');
+paymentRadios.forEach(radio => {
+    radio.addEventListener('change', function() {
+        const bankQr = document.getElementById('bankQr');
+        if (this.value === 'Chuyển khoản ngân hàng') {
+            bankQr.style.display = 'block';
+        } else {
+            bankQr.style.display = 'none';
+        }
+    });
+});
+</script>
+</body>
+</html>

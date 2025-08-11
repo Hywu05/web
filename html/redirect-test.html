@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Redirect</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+        }
+        .test-btn {
+            background: white;
+            color: #667eea;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 10px;
+            transition: all 0.3s ease;
+        }
+        .test-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        .status {
+            margin: 20px 0;
+            padding: 15px;
+            border-radius: 10px;
+            background: rgba(255,255,255,0.1);
+        }
+    </style>
+</head>
+<body>
+    <h1>🧪 Test Chuyển Hướng</h1>
+    
+    <div class="status" id="status">
+        Trạng thái: Sẵn sàng test
+    </div>
+    
+    <button class="test-btn" onclick="testRedirect1()">
+        Test 1: window.location.href
+    </button>
+    
+    <button class="test-btn" onclick="testRedirect2()">
+        Test 2: window.location.replace
+    </button>
+    
+    <button class="test-btn" onclick="testRedirect3()">
+        Test 3: window.location
+    </button>
+    
+    <button class="test-btn" onclick="testLoginRedirect()">
+        Test 4: Simulate Login Redirect
+    </button>
+    
+    <div style="margin-top: 30px;">
+        <a href="index.html" class="test-btn" style="text-decoration: none; display: inline-block;">
+            ← Quay về trang chủ
+        </a>
+    </div>
+
+    <script>
+        function updateStatus(message) {
+            document.getElementById('status').textContent = 'Trạng thái: ' + message;
+        }
+        
+        function testRedirect1() {
+            updateStatus('Đang test window.location.href...');
+            setTimeout(() => {
+                try {
+                    window.location.href = 'index.html';
+                } catch (error) {
+                    updateStatus('Lỗi: ' + error.message);
+                }
+            }, 1000);
+        }
+        
+        function testRedirect2() {
+            updateStatus('Đang test window.location.replace...');
+            setTimeout(() => {
+                try {
+                    window.location.replace('index.html');
+                } catch (error) {
+                    updateStatus('Lỗi: ' + error.message);
+                }
+            }, 1000);
+        }
+        
+        function testRedirect3() {
+            updateStatus('Đang test window.location...');
+            setTimeout(() => {
+                try {
+                    window.location = 'index.html';
+                } catch (error) {
+                    updateStatus('Lỗi: ' + error.message);
+                }
+            }, 1000);
+        }
+        
+        function testLoginRedirect() {
+            updateStatus('Đang test simulate login redirect...');
+            
+            // Simulate login process
+            setTimeout(() => {
+                updateStatus('Lưu dữ liệu vào localStorage...');
+                
+                // Save to localStorage
+                localStorage.setItem('isLoggedIn', 'true');
+                localStorage.setItem('userInfo', JSON.stringify({
+                    email: 'test@example.com',
+                    name: 'Test User',
+                    loginTime: new Date().toISOString()
+                }));
+                
+                setTimeout(() => {
+                    updateStatus('Chuyển hướng sau 2 giây...');
+                    
+                    setTimeout(() => {
+                        updateStatus('Đang chuyển hướng...');
+                        try {
+                            window.location.href = 'index.html';
+                        } catch (error) {
+                            updateStatus('Lỗi chuyển hướng: ' + error.message);
+                        }
+                    }, 2000);
+                }, 1000);
+            }, 1000);
+        }
+        
+        // Check current page info
+        console.log('Current location:', window.location.href);
+        console.log('Current pathname:', window.location.pathname);
+        console.log('Current directory:', window.location.pathname.split('/').slice(0, -1).join('/'));
+    </script>
+</body>
+</html> 

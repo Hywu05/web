@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Login System</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="top-bar">
+            <div class="container">
+                <div class="top-links">
+                    <a href="contact.html"><i class="fas fa-phone"></i> +84 123 456 789</a>
+                    <a href="contact.html"><i class="fas fa-envelope"></i> info@beautycosmetics.com</a>
+                </div>
+                <div class="auth-links">
+                    <a href="login.html" id="loginLink"><i class="fas fa-user"></i> Đăng nhập</a>
+                    <a href="profile.html" id="profileLink" style="display: none;"><i class="fas fa-user-circle"></i> Tài khoản</a>
+                    <a href="profile.html"><i class="fas fa-heart"></i> Yêu thích</a>
+                </div>
+            </div>
+        </div>
+        <nav class="main-nav">
+            <div class="container">
+                <div class="logo">
+                    <a href="index.html">BEAUTY</a>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="index.html">Trang chủ</a></li>
+                    <li><a href="#products">Sản phẩm</a></li>
+                    <li><a href="#promotions">Khuyến mãi</a></li>
+                    <li><a href="#about">Về chúng tôi</a></li>
+                    <li><a href="contact.html">Liên hệ</a></li>
+                </ul>
+                <div class="nav-icons">
+                    <a href="#"><i class="fas fa-search"></i></a>
+                    <a href="cart.html"><i class="fas fa-shopping-bag"></i><span class="cart-count">0</span></a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main style="padding: 100px 20px; text-align: center;">
+        <h1>Test Login System</h1>
+        
+        <div style="max-width: 600px; margin: 0 auto; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+            <h2>Trạng thái hiện tại:</h2>
+            <div id="status" style="margin: 20px 0; padding: 15px; border-radius: 10px; background: #f8f9fa;"></div>
+            
+            <div style="display: flex; gap: 15px; justify-content: center; margin: 20px 0;">
+                <button onclick="testLogin()" style="padding: 10px 20px; background: #27ae60; color: white; border: none; border-radius: 8px; cursor: pointer;">
+                    Test Đăng nhập
+                </button>
+                <button onclick="testLogout()" style="padding: 10px 20px; background: #e74c3c; color: white; border: none; border-radius: 8px; cursor: pointer;">
+                    Test Đăng xuất
+                </button>
+                <button onclick="checkStatus()" style="padding: 10px 20px; background: #3498db; color: white; border: none; border-radius: 8px; cursor: pointer;">
+                    Kiểm tra trạng thái
+                </button>
+            </div>
+            
+            <div style="margin-top: 30px;">
+                <h3>Thông tin localStorage:</h3>
+                <pre id="localStorageInfo" style="background: #f8f9fa; padding: 15px; border-radius: 8px; text-align: left; overflow-x: auto;"></pre>
+            </div>
+        </div>
+    </main>
+
+    <script src="../js/main.js"></script>
+    <script>
+        function testLogin() {
+            const userData = {
+                name: 'Nguyễn Thị A',
+                email: 'test@example.com',
+                phone: '0123456789'
+            };
+            
+            if (typeof loginUser === 'function') {
+                loginUser(userData);
+                console.log('Login function called');
+            } else {
+                console.log('Login function not found');
+                // Fallback
+                localStorage.setItem('isLoggedIn', 'true');
+                localStorage.setItem('userInfo', JSON.stringify(userData));
+            }
+            
+            setTimeout(() => {
+                checkStatus();
+            }, 100);
+        }
+        
+        function testLogout() {
+            if (typeof logoutUser === 'function') {
+                logoutUser();
+                console.log('Logout function called');
+            } else {
+                console.log('Logout function not found');
+                // Fallback
+                localStorage.removeItem('isLoggedIn');
+                localStorage.removeItem('userInfo');
+            }
+            
+            setTimeout(() => {
+                checkStatus();
+            }, 100);
+        }
+        
+        function checkStatus() {
+            const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+            const userInfo = JSON.parse(localStorage.getItem('userInfo') || '{}');
+            
+            const statusDiv = document.getElementById('status');
+            const localStorageDiv = document.getElementById('localStorageInfo');
+            
+            if (isLoggedIn && userInfo.email) {
+                statusDiv.innerHTML = `<strong style="color: #27ae60;">✅ Đã đăng nhập</strong><br>Tên: ${userInfo.name}<br>Email: ${userInfo.email}`;
+                statusDiv.style.background = '#d4edda';
+                statusDiv.style.color = '#155724';
+            } else {
+                statusDiv.innerHTML = `<strong style="color: #e74c3c;">❌ Chưa đăng nhập</strong>`;
+                statusDiv.style.background = '#f8d7da';
+                statusDiv.style.color = '#721c24';
+            }
+            
+            localStorageDiv.textContent = JSON.stringify({
+                isLoggedIn: localStorage.getItem('isLoggedIn'),
+                userInfo: JSON.parse(localStorage.getItem('userInfo') || '{}')
+            }, null, 2);
+        }
+        
+        // Check status on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(() => {
+                checkStatus();
+            }, 500);
+        });
+    </script>
+</body>
+</html> 

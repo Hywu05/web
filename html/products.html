@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sản phẩm - Beauty Cosmetics</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <div class="top-bar">
+            <div class="container">
+                <div class="top-links">
+                    <a href="contact.html"><i class="fas fa-phone"></i> +84 123 456 789</a>
+                    <a href="contact.html"><i class="fas fa-envelope"></i> info@beautycosmetics.com</a>
+                </div>
+                <div class="auth-links">
+                    <a href="login.html" id="loginLink"><i class="fas fa-user"></i> Đăng nhập</a>
+                    <a href="profile.html" id="profileLink" style="display: none;"><i class="fas fa-user-circle"></i>
+                        Tài khoản</a>
+                    <a href="profile.html"><i class="fas fa-heart"></i> Yêu thích</a>
+                </div>
+            </div>
+        </div>
+        <nav class="main-nav">
+            <div class="container">
+                <div class="logo">
+                    <a href="index.html">Beauty Cosmetics</a>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="index.html">Trang chủ</a></li>
+                    <li><a href="index.html#products">Sản phẩm</a></li>
+                    <li><a href="index.html#promotions">Khuyến mãi</a></li>
+                    <li><a href="index.html#about">Về chúng tôi</a></li>
+                    <li><a href="contact.html">Liên hệ</a></li>
+                </ul>
+                <div class="nav-icons">
+                    <a href="#"><i class="fas fa-search"></i></a>
+                    <a href="cart.html"><i class="fas fa-shopping-bag"></i><span class="cart-count">0</span></a>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <section class="promo-section">
+            <div class="container">
+                <h2 class="section-title" id="categoryTitle">SẢN PHẨM</h2>
+                <div class="promo-grid" id="productsGrid"></div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <div class="footer-top">
+            <div class="container">
+                <div class="footer-column">
+                    <h4>Về chúng tôi</h4>
+                    <ul>
+                        <li><a href="#">Câu chuyện thương hiệu</a></li>
+                        <li><a href="#">Tuyển dụng</a></li>
+                        <li><a href="#">Tin tức & Sự kiện</a></li>
+                        <li><a href="#">Chính sách bảo mật</a></li>
+                        <li><b>Địa chỉ:</b> 123 Đường ABC, Quận 1, TP.HCM</li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Dịch vụ khách hàng</h4>
+                    <ul>
+                        <li><a href="contact.html">Liên hệ chúng tôi</a></li>
+                        <li><a href="#">Câu hỏi thường gặp</a></li>
+                        <li><a href="#">Hướng dẫn mua hàng</a></li>
+                        <li><a href="#">Chính sách đổi trả</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Sản phẩm</h4>
+                    <ul>
+                        <li><a href="#">Chăm sóc da</a></li>
+                        <li><a href="#">Trang điểm</a></li>
+                        <li><a href="#">Nước hoa</a></li>
+                        <li><a href="#">Chăm sóc tóc</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Theo dõi chúng tôi</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                    <div class="newsletter-form">
+                        <input type="email" placeholder="Nhập email của bạn">
+                        <button type="submit">Đăng ký</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>© 2025 Beauty Cosmetics. All rights reserved.</p>
+                <div class="payment-methods">
+                    <img src="/images/logo_VCB_828891.jpg" alt="FileUp">
+                    <img src="/images/y-nghia-logo-mb-bank-2.jpg" alt="FileUp">
+                    <img src="/images/0e3349ab85ae5ebf604df3cb380f9c8f.jpg" alt="FileUp">
+                    <img src="/images/logo-techcombank-dongphucvina.vn_.png" alt="FileUp">
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script>
+        // Danh sách sản phẩm mẫu (bạn có thể lấy từ server hoặc file JSON)
+        const allProducts = [
+            {
+                id: 1,
+                name: 'Serum Dưỡng Ẩm Vitamin C',
+                price: 850000,
+                image: '/images/dowload.jpg',  // Thay bằng đường dẫn ảnh local
+                category: 'Serum dưỡng ẩm'
+            },
+            {
+                id: 2,
+                name: 'Kem Chống Nắng SPF 50+',
+                price: 450000,
+                image: '/images/kem-chong-nang-hang-ngay-ecosy-ultra-daily-sun-cream-61543.png',
+                category: 'cham-soc-da'
+            },
+            {
+                id: 3,
+                name: 'Son Môi Lì Cao Cấp',
+                price: 250000,
+                image: '/images/5f93bb10fffdca748ee4765e_Son-YSL-Rouge-Pur-Couture-The-Slim-Matte-Lipstick-Mau-23-Mystery-Red-Vivalust.vn-6-3.jpeg',
+                category: 'trang-diem'
+            },
+            {
+                id: 4,
+                name: 'Sữa Rửa Mặt Thiên Nhiên',
+                price: 210000,
+                image: '/images/Top-10-sua-rua-mat-chiet-xuat-tu-thien-nhien-cuc-ky-lanh-tinh-cho-da-nhay-cam-9-845x500.jpg',
+                category: 'cham-soc-da'
+            },
+            {
+                id: 5,
+                name: 'Nước Hoa Nữ Cao Cấp',
+                price: 1450000,
+                image: '/images/65bb3f81eb8e1ac53d0c0972.D630612.belove-beyond-personal-gift-platform.webp',
+                category: 'nuoc-hoa'
+            },
+            {
+                id: 6,
+                name: 'Dầu Gội Phục Hồi Tóc',
+                price: 320000,
+                image: '/images/16042025085111shampooserieexpertabsolutrepairgold-30e2.jpg',
+                category: 'cham-soc-toc'
+            },
+            {
+                id: 7,
+                name: 'Phấn Phủ Trang Điểm',
+                price: 370000,
+                image: '/images/7dWhT3Im-uUrUtzfEM03WfuCfsZzoJS-wT1Oa4PWQOeUMKxChseAoCftw2vU6Wu6hoe3-QB6w1YZdvfWrUtpKYBnYJAiuKLqxV_5lryPyiwdzdBVz5DSUFdiJ5LqGjxr7oNWsoe9MzuRo9YCCznfjIKOoUAiO8c8jHvPfr3_8dJn5MhN6_FgNUBko8AsRw.png',
+                category: 'trang-diem'
+            },
+            {
+                id: 8,
+                name: 'Kem Dưỡng Trắng Da',
+                price: 650000,
+                image: '/images/top-kem-duong-trang-da-mat-tot-nhat-jpg.webp',
+                category: 'cham-soc-da'
+            },
+            {
+                id: 9,
+                name: 'Tẩy Trang Dịu Nhẹ',
+                price: 210000,
+                image: '/images/mai-han-1-168248181346854635928.webp',
+                category: 'cham-soc-da'
+            },
+            {
+                id: 10,
+                name: 'Mặt Nạ Dưỡng Da',
+                price: 120000,
+                image: '/images/1-1688546712650330605039.webp',
+                category: 'cham-soc-da'
+            }
+        ];
+        const categoryNames = {
+            'cham-soc-da': 'Chăm Sóc Da',
+            'trang-diem': 'Trang Điểm',
+            'nuoc-hoa': 'Nước Hoa',
+            'cham-soc-toc': 'Chăm Sóc Tóc'
+        };
+        function getCategoryFromUrl() {
+            const params = new URLSearchParams(window.location.search);
+            return params.get('category');
+        }
+        function renderProductsByCategory(category) {
+            let products = allProducts;
+            let title = 'TẤT CẢ SẢN PHẨM';
+            if (category && categoryNames[category]) {
+                products = allProducts.filter(p => p.category === category);
+                title = categoryNames[category].toUpperCase();
+            }
+            document.getElementById('categoryTitle').innerText = title;
+            const grid = document.getElementById('productsGrid');
+            if (products.length === 0) {
+                grid.innerHTML = '<p>Không có sản phẩm nào trong danh mục này.</p>';
+                return;
+            }
+            grid.innerHTML = products.map(p => `
+        <div class="promo-item">
+          <img src="${p.image}" alt="${p.name}">
+          <h3>${p.name}</h3>
+          <div class="price">${p.price.toLocaleString()}đ</div>
+          <button class="btn add-to-cart" data-product-id="${p.id}">Thêm vào giỏ</button>
+        </div>
+      `).join('');
+        }
+        // Hiển thị avatar tài khoản nếu đã đăng nhập
+        function showAccountAvatar() {
+            const user = JSON.parse(localStorage.getItem('userInfo') || '{}');
+            const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+            const loginLink = document.getElementById('loginLink');
+            const profileLink = document.getElementById('profileLink');
+            if (isLoggedIn && user) {
+                if (loginLink) loginLink.style.display = 'none';
+                if (profileLink) {
+                    profileLink.style.display = 'inline-block';
+                    // Hiện avatar tròn và chữ "Tài khoản" như các trang khác
+                    const avatar = user.avatarUrl ? `<img src="${user.avatarUrl}" style="width:28px;height:28px;border-radius:50%;vertical-align:middle;margin-right:6px;">` : `<i class='fas fa-user-circle' style='font-size: 22px; vertical-align: middle; margin-right: 6px;'></i>`;
+                    const name = user.name ? user.name : 'Tài khoản';
+                    profileLink.innerHTML = `${avatar} ${name}`;
+                }
+            } else {
+                if (loginLink) loginLink.style.display = 'inline-block';
+                if (profileLink) profileLink.style.display = 'none';
+            }
+        }
+        document.addEventListener('DOMContentLoaded', function () {
+            const category = getCategoryFromUrl();
+            renderProductsByCategory(category);
+            showAccountAvatar();
+        });
+    </script>
+</body>
+
+</html>

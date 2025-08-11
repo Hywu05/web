@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beauty Cosmetics - Đăng nhập</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/auth.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header giống trang chủ -->
+    <header>
+        <div class="top-bar">
+            <div class="container">
+                <div class="top-links">
+                    <a href="contact.html"><i class="fas fa-phone"></i> +84 123 456 789</a>
+                    <a href="contact.html"><i class="fas fa-envelope"></i> info@beautycosmetics.com</a>
+                </div>
+                <div class="auth-links">
+                    <a href="login.html" id="loginLink"><i class="fas fa-user"></i> Đăng nhập</a>
+                    <a href="profile.html" id="profileLink" style="display: none;"><i class="fas fa-user-circle"></i> Tài khoản</a>
+                    <a href="profile.html"><i class="fas fa-heart"></i> Yêu thích</a>
+                </div>
+            </div>
+        </div>
+        <nav class="main-nav">
+            <div class="container">
+                <div class="logo">
+                    <a href="index.html">BEAUTY</a>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="index.html">Trang chủ</a></li>
+                    <li><a href="index.html#products">Sản phẩm</a></li>
+                    <li><a href="index.html#promotions">Khuyến mãi</a></li>
+                    <li><a href="index.html#about">Về chúng tôi</a></li>
+                    <li><a href="contact.html">Liên hệ</a></li>
+                </ul>
+                <div class="nav-icons">
+                    <a href="#"><i class="fas fa-search"></i></a>
+                    <a href="cart.html"><i class="fas fa-shopping-bag"></i><span class="cart-count">0</span></a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="auth-page">
+        <div class="auth-container">
+            <h1>Đăng nhập</h1>
+            
+            <form id="loginForm" autocomplete="off" data-lpignore="true" novalidate>
+                <div class="form-group">
+                    <label for="loginEmail">Email *</label>
+                    <input type="email" id="loginEmail" name="email" required placeholder="Nhập email của bạn" autocomplete="off" data-lpignore="true" data-form-type="other" spellcheck="false" autocorrect="off" autocapitalize="off">
+                    <span class="error-message" id="emailError"></span>
+                </div>
+                
+                <div class="form-group">
+                    <label for="loginPassword">Mật khẩu *</label>
+                    <input type="password" id="loginPassword" name="password" required placeholder="Nhập mật khẩu" autocomplete="off" data-lpignore="true" data-form-type="other" spellcheck="false" autocorrect="off" autocapitalize="off">
+                    <span class="error-message" id="passwordError"></span>
+                </div>
+                
+                <div class="form-options">
+                    <label>
+                        <input type="checkbox" name="remember"> Ghi nhớ đăng nhập
+                    </label>
+                    <a href="#" style="color: #667eea;">Quên mật khẩu?</a>
+                </div>
+                
+                <button type="submit" class="btn btn-auth">Đăng nhập</button>
+                
+                <div class="auth-footer">
+                    <p>Chưa có tài khoản? <a href="register.html">Đăng ký ngay</a></p>
+                </div>
+            </form>
+            
+            <!-- Social Login -->
+            <div style="margin-top: 30px; text-align: center;">
+                <p style="color: #95a5a6; margin-bottom: 20px; position: relative;">
+                    <span style="background: rgba(255, 255, 255, 0.95); padding: 0 15px; color: #95a5a6;">Hoặc đăng nhập với</span>
+                </p>
+                <div style="display: flex; gap: 15px; justify-content: center;">
+                    <button style="display: flex; align-items: center; justify-content: center; width: 50px; height: 50px; background: linear-gradient(135deg, #3b5998 0%, #4c70ba 100%); border: none; border-radius: 50%; color: white; font-size: 18px; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(59, 89, 152, 0.3);">
+                        <i class="fab fa-facebook-f"></i>
+                    </button>
+                    <button style="display: flex; align-items: center; justify-content: center; width: 50px; height: 50px; background: linear-gradient(135deg, #db4437 0%, #ea4335 100%); border: none; border-radius: 50%; color: white; font-size: 18px; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(219, 68, 55, 0.3);">
+                        <i class="fab fa-google"></i>
+                    </button>
+                    <button style="display: flex; align-items: center; justify-content: center; width: 50px; height: 50px; background: linear-gradient(135deg, #1da1f2 0%, #0d8bd9 100%); border: none; border-radius: 50%; color: white; font-size: 18px; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(29, 161, 242, 0.3);">
+                        <i class="fab fa-twitter"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer giống trang chủ -->
+    <footer>
+        <div class="footer-top">
+            <div class="container">
+                <div class="footer-column">
+                    <h4>Về chúng tôi</h4>
+                    <ul>
+                        <li><a href="#">Câu chuyện thương hiệu</a></li>
+                        <li><a href="#">Tuyển dụng</a></li>
+                        <li><a href="#">Tin tức & Sự kiện</a></li>
+                        <li><a href="#">Chính sách bảo mật</a></li>
+                        <li><b>Địa chỉ:</b> 123 Đường ABC, Quận 1, TP.HCM</li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Dịch vụ khách hàng</h4>
+                    <ul>
+                        <li><a href="contact.html">Liên hệ chúng tôi</a></li>
+                        <li><a href="#">Câu hỏi thường gặp</a></li>
+                        <li><a href="#">Hướng dẫn mua hàng</a></li>
+                        <li><a href="#">Chính sách đổi trả</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Sản phẩm</h4>
+                    <ul>
+                        <li><a href="#">Chăm sóc da</a></li>
+                        <li><a href="#">Trang điểm</a></li>
+                        <li><a href="#">Nước hoa</a></li>
+                        <li><a href="#">Chăm sóc tóc</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Theo dõi chúng tôi</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                    <div class="newsletter-form">
+                        <input type="email" placeholder="Nhập email của bạn">
+                        <button type="submit">Đăng ký</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>© 2025 Beauty Cosmetics. All rights reserved.</p>
+                <div class="payment-methods">
+                    <img src="/images/logo_VCB_828891.jpg" alt="FileUp">
+                    <img src="/images/y-nghia-logo-mb-bank-2.jpg" alt="FileUp">
+                    <img src="/images/0e3349ab85ae5ebf604df3cb380f9c8f.jpg" alt="FileUp">
+                    <img src="/images/logo-techcombank-dongphucvina.vn_.png" alt="FileUp">
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/auth.js"></script>
+</body>
+</html>

@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beauty Cosmetics - Liên hệ</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Contact Form Styles */
+        .contact-page {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 0;
+        }
+        
+        .page-title {
+            text-align: center;
+            color: white;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #2c3e50;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px 20px;
+            border: 2px solid #e9ecef;
+            border-radius: 15px;
+            font-size: 16px;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            color: #2c3e50;
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            background: rgba(255, 255, 255, 0.95);
+        }
+        
+        .form-group input.error,
+        .form-group select.error,
+        .form-group textarea.error {
+            border-color: #e74c3c;
+            box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.1);
+        }
+        
+        .error-message {
+            color: #e74c3c;
+            font-size: 12px;
+            margin-top: 5px;
+            display: none;
+        }
+        
+        .btn-submit {
+            width: 100%;
+            padding: 15px 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 15px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 35px rgba(102, 126, 234, 0.4);
+        }
+        
+        .btn-submit:active {
+            transform: translateY(0);
+        }
+        
+        .btn-submit.loading {
+            background: linear-gradient(135deg, #95a5a6 0%, #7f8c8d 100%);
+            cursor: not-allowed;
+        }
+        
+        .btn-submit.loading::after {
+            content: '';
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 2px solid transparent;
+            border-top: 2px solid white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-left: 10px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .success-message {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(39, 174, 96, 0.3);
+            z-index: 10000;
+            animation: slideInRight 0.5s ease-out;
+        }
+        
+        @keyframes slideInRight {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
+        @keyframes slideOutRight {
+            from {
+                transform: translateX(0);
+                opacity: 1;
+            }
+            to {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .contact-container {
+                grid-template-columns: 1fr !important;
+                gap: 30px !important;
+            }
+            
+            .page-title {
+                font-size: 2rem;
+            }
+            
+            .contact-info,
+            .contact-form {
+                padding: 30px 20px !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header giống trang chủ -->
+    <header>
+        <div class="top-bar">
+            <div class="container">
+                <div class="top-links">
+                    <a href="contact.html"><i class="fas fa-phone"></i> +84 123 456 789</a>
+                    <a href="contact.html"><i class="fas fa-envelope"></i> info@beautycosmetics.com</a>
+                </div>
+                <div class="auth-links">
+                    <a href="login.html" id="loginLink"><i class="fas fa-user"></i> Đăng nhập</a>
+                    <a href="profile.html" id="profileLink" style="display: none;"><i class="fas fa-user-circle"></i> Tài khoản</a>
+                    <a href="profile.html"><i class="fas fa-heart"></i> Yêu thích</a>
+                </div>
+            </div>
+        </div>
+        <nav class="main-nav">
+            <div class="container">
+                <div class="logo">
+                    <a href="index.html">BEAUTY</a>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="index.html">Trang chủ</a></li>
+                    <li><a href="index.html#products">Sản phẩm</a></li>
+                    <li><a href="index.html#promotions">Khuyến mãi</a></li>
+                    <li><a href="index.html#about">Về chúng tôi</a></li>
+                    <li><a href="contact.html">Liên hệ</a></li>
+                </ul>
+                <div class="nav-icons">
+                    <a href="#"><i class="fas fa-search"></i></a>
+                    <a href="cart.html"><i class="fas fa-shopping-bag"></i><span class="cart-count">0</span></a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="contact-page">
+        <div class="container">
+            <h1 class="page-title">Liên hệ với chúng tôi</h1>
+            
+            <div class="contact-container" style="display: grid; grid-template-columns: 1fr 1fr; gap: 50px; margin-top: 40px;">
+                <div class="contact-info" style="background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(20px); padding: 40px; border-radius: 25px; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1); border: 1px solid rgba(255, 255, 255, 0.2);">
+                    <h2 style="font-size: 1.8rem; margin-bottom: 30px; color: #2c3e50; position: relative;">
+                        <i class="fas fa-info-circle" style="color: #667eea; margin-right: 10px;"></i>
+                        Thông tin liên hệ
+                    </h2>
+                    
+                    <div style="margin-bottom: 30px;">
+                        <div style="display: flex; align-items: center; margin-bottom: 20px;">
+                            <i class="fas fa-map-marker-alt" style="color: #667eea; font-size: 1.2rem; margin-right: 15px; width: 20px;"></i>
+                            <div>
+                                <h4 style="color: #2c3e50; margin-bottom: 5px;">Địa chỉ</h4>
+                                <p style="color: #95a5a6;">123 Đường ABC, Quận 1, TP.HCM</p>
+                            </div>
+                        </div>
+                        
+                        <div style="display: flex; align-items: center; margin-bottom: 20px;">
+                            <i class="fas fa-phone" style="color: #667eea; font-size: 1.2rem; margin-right: 15px; width: 20px;"></i>
+                            <div>
+                                <h4 style="color: #2c3e50; margin-bottom: 5px;">Điện thoại</h4>
+                                <p style="color: #95a5a6;">(028) 1234 5678</p>
+                            </div>
+                        </div>
+                        
+                        <div style="display: flex; align-items: center; margin-bottom: 20px;">
+                            <i class="fas fa-envelope" style="color: #667eea; font-size: 1.2rem; margin-right: 15px; width: 20px;"></i>
+                            <div>
+                                <h4 style="color: #2c3e50; margin-bottom: 5px;">Email</h4>
+                                <p style="color: #95a5a6;">info@beautycosmetics.com</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h3 style="font-size: 1.4rem; margin-bottom: 20px; color: #2c3e50;">
+                        <i class="fas fa-clock" style="color: #667eea; margin-right: 10px;"></i>
+                        Giờ làm việc
+                    </h3>
+                    <div style="color: #95a5a6;">
+                        <p style="margin-bottom: 10px;"><strong>Thứ 2 - Thứ 6:</strong> 8:00 - 17:00</p>
+                        <p style="margin-bottom: 10px;"><strong>Thứ 7:</strong> 8:00 - 12:00</p>
+                        <p style="margin-bottom: 10px;"><strong>Chủ nhật:</strong> Nghỉ</p>
+                    </div>
+                    
+                    <div style="margin-top: 30px;">
+                        <h3 style="font-size: 1.4rem; margin-bottom: 20px; color: #2c3e50;">
+                            <i class="fas fa-share-alt" style="color: #667eea; margin-right: 10px;"></i>
+                            Theo dõi chúng tôi
+                        </h3>
+                        <div style="display: flex; gap: 15px;">
+                            <a href="#" style="display: flex; align-items: center; justify-content: center; width: 45px; height: 45px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 50%; color: white; font-size: 18px; transition: all 0.3s ease; text-decoration: none;">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#" style="display: flex; align-items: center; justify-content: center; width: 45px; height: 45px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 50%; color: white; font-size: 18px; transition: all 0.3s ease; text-decoration: none;">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="#" style="display: flex; align-items: center; justify-content: center; width: 45px; height: 45px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 50%; color: white; font-size: 18px; transition: all 0.3s ease; text-decoration: none;">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form" style="background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(20px); padding: 40px; border-radius: 25px; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1); border: 1px solid rgba(255, 255, 255, 0.2);">
+                    <h2 style="font-size: 1.8rem; margin-bottom: 30px; color: #2c3e50;">
+                        <i class="fas fa-paper-plane" style="color: #667eea; margin-right: 10px;"></i>
+                        Gửi tin nhắn
+                    </h2>
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Họ và tên *</label>
+                            <input type="text" id="name" name="name" required placeholder="Nhập họ và tên của bạn">
+                            <div class="error-message" id="nameError"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email *</label>
+                            <input type="email" id="email" name="email" required placeholder="Nhập email của bạn">
+                            <div class="error-message" id="emailError"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Số điện thoại</label>
+                            <input type="tel" id="phone" name="phone" placeholder="Nhập số điện thoại">
+                            <div class="error-message" id="phoneError"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Chủ đề *</label>
+                            <select id="subject" name="subject" required>
+                                <option value="">Chọn chủ đề</option>
+                                <option value="product">Tư vấn sản phẩm</option>
+                                <option value="order">Đơn hàng</option>
+                                <option value="complaint">Khiếu nại</option>
+                                <option value="cooperation">Hợp tác</option>
+                                <option value="other">Khác</option>
+                            </select>
+                            <div class="error-message" id="subjectError"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Nội dung *</label>
+                            <textarea id="message" name="message" rows="5" required placeholder="Nhập nội dung tin nhắn của bạn"></textarea>
+                            <div class="error-message" id="messageError"></div>
+                        </div>
+                        <button type="submit" class="btn-submit">Gửi tin nhắn</button>
+                    </form>
+                </div>
+            </div>
+            
+            <!-- Map Section -->
+            <div style="margin-top: 60px; text-align: center;">
+                <h2 style="font-size: 2rem; margin-bottom: 30px; color: #2c3e50;">Vị trí của chúng tôi</h2>
+                <div style="background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(20px); padding: 40px; border-radius: 25px; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1); border: 1px solid rgba(255, 255, 255, 0.2);">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.4241779814307!2d106.6983153!3d10.7769!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTDCsDQ2JzM2LjgiTiAxMDbCsDQxJzUzLjQiRQ!5e0!3m2!1svi!2s!4v1234567890" width="100%" height="400" style="border: 0; border-radius: 15px;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer giống trang chủ -->
+    <footer>
+        <div class="footer-top">
+            <div class="container">
+                <div class="footer-column">
+                    <h4>Về chúng tôi</h4>
+                    <ul>
+                        <li><a href="#">Câu chuyện thương hiệu</a></li>
+                        <li><a href="#">Tuyển dụng</a></li>
+                        <li><a href="#">Tin tức & Sự kiện</a></li>
+                        <li><a href="#">Chính sách bảo mật</a></li>
+                        <li><b>Địa chỉ:</b> 123 Đường ABC, Quận 1, TP.HCM</li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Dịch vụ khách hàng</h4>
+                    <ul>
+                        <li><a href="contact.html">Liên hệ chúng tôi</a></li>
+                        <li><a href="#">Câu hỏi thường gặp</a></li>
+                        <li><a href="#">Hướng dẫn mua hàng</a></li>
+                        <li><a href="#">Chính sách đổi trả</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Sản phẩm</h4>
+                    <ul>
+                        <li><a href="#">Chăm sóc da</a></li>
+                        <li><a href="#">Trang điểm</a></li>
+                        <li><a href="#">Nước hoa</a></li>
+                        <li><a href="#">Chăm sóc tóc</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Theo dõi chúng tôi</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                    <div class="newsletter-form">
+                        <input type="email" placeholder="Nhập email của bạn">
+                        <button type="submit">Đăng ký</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>© 2025 Beauty Cosmetics. All rights reserved.</p>
+                <div class="payment-methods">
+                    <img src="/images/logo_VCB_828891.jpg" alt="FileUp">
+                    <img src="/images/y-nghia-logo-mb-bank-2.jpg" alt="FileUp">
+                    <img src="/images/0e3349ab85ae5ebf604df3cb380f9c8f.jpg" alt="FileUp">
+                    <img src="/images/logo-techcombank-dongphucvina.vn_.png" alt="FileUp">
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script>
+        // Contact Form JavaScript
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Contact form loaded');
+            
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    validateContactForm();
+                });
+            }
+            
+            // Real-time validation
+            const inputs = document.querySelectorAll('#contactForm input, #contactForm select, #contactForm textarea');
+            inputs.forEach(input => {
+                input.addEventListener('blur', function() {
+                    validateField(this);
+                });
+                
+                input.addEventListener('input', function() {
+                    clearFieldError(this);
+                });
+            });
+        });
+        
+        function validateContactForm() {
+            const name = document.getElementById('name');
+            const email = document.getElementById('email');
+            const phone = document.getElementById('phone');
+            const subject = document.getElementById('subject');
+            const message = document.getElementById('message');
+            
+            let isValid = true;
+            
+            // Clear previous errors
+            clearAllErrors();
+            
+            // Validate name
+            if (!name.value.trim()) {
+                showFieldError(name, 'Họ và tên không được để trống');
+                isValid = false;
+            } else if (name.value.length < 2) {
+                showFieldError(name, 'Họ và tên phải có ít nhất 2 ký tự');
+                isValid = false;
+            }
+            
+            // Validate email
+            if (!email.value.trim()) {
+                showFieldError(email, 'Email không được để trống');
+                isValid = false;
+            } else if (!isValidEmail(email.value)) {
+                showFieldError(email, 'Email không hợp lệ');
+                isValid = false;
+            }
+            
+            // Validate phone (optional)
+            if (phone.value.trim() && !isValidPhone(phone.value)) {
+                showFieldError(phone, 'Số điện thoại không hợp lệ');
+                isValid = false;
+            }
+            
+            // Validate subject
+            if (!subject.value.trim()) {
+                showFieldError(subject, 'Vui lòng chọn chủ đề');
+                isValid = false;
+            }
+            
+            // Validate message
+            if (!message.value.trim()) {
+                showFieldError(message, 'Nội dung không được để trống');
+                isValid = false;
+            } else if (message.value.length < 10) {
+                showFieldError(message, 'Nội dung phải có ít nhất 10 ký tự');
+                isValid = false;
+            }
+            
+            if (isValid) {
+                console.log('Contact form is valid, submitting...');
+                submitContactForm();
+            }
+        }
+        
+        function validateField(field) {
+            const value = field.value.trim();
+            const fieldName = field.name;
+            
+            switch (fieldName) {
+                case 'name':
+                    if (!value) {
+                        showFieldError(field, 'Họ và tên không được để trống');
+                    } else if (value.length < 2) {
+                        showFieldError(field, 'Họ và tên phải có ít nhất 2 ký tự');
+                    }
+                    break;
+                    
+                case 'email':
+                    if (!value) {
+                        showFieldError(field, 'Email không được để trống');
+                    } else if (!isValidEmail(value)) {
+                        showFieldError(field, 'Email không hợp lệ');
+                    }
+                    break;
+                    
+                case 'phone':
+                    if (value && !isValidPhone(value)) {
+                        showFieldError(field, 'Số điện thoại không hợp lệ');
+                    }
+                    break;
+                    
+                case 'subject':
+                    if (!value) {
+                        showFieldError(field, 'Vui lòng chọn chủ đề');
+                    }
+                    break;
+                    
+                case 'message':
+                    if (!value) {
+                        showFieldError(field, 'Nội dung không được để trống');
+                    } else if (value.length < 10) {
+                        showFieldError(field, 'Nội dung phải có ít nhất 10 ký tự');
+                    }
+                    break;
+            }
+        }
+        
+        function submitContactForm() {
+            const submitBtn = document.querySelector('.btn-submit');
+            const originalText = submitBtn.textContent;
+            
+            // Show loading state
+            submitBtn.classList.add('loading');
+            submitBtn.textContent = 'Đang gửi...';
+            
+            // Simulate form submission
+            setTimeout(() => {
+                submitBtn.classList.remove('loading');
+                submitBtn.textContent = originalText;
+                
+                // Show success message
+                showSuccessMessage('Tin nhắn đã được gửi thành công! Chúng tôi sẽ phản hồi trong thời gian sớm nhất.');
+                
+                // Reset form
+                document.getElementById('contactForm').reset();
+                
+                console.log('Contact form submitted successfully');
+            }, 2000);
+        }
+        
+        function isValidEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+        
+        function isValidPhone(phone) {
+            const phoneRegex = /^[0-9]{10,11}$/;
+            return phoneRegex.test(phone.replace(/\s/g, ''));
+        }
+        
+        function showFieldError(field, message) {
+            const errorElement = document.getElementById(field.name + 'Error') || 
+                                document.getElementById(field.id + 'Error');
+            if (errorElement) {
+                errorElement.textContent = message;
+                errorElement.style.display = 'block';
+            }
+            
+            field.classList.add('error');
+        }
+        
+        function clearFieldError(field) {
+            const errorElement = document.getElementById(field.name + 'Error') || 
+                                document.getElementById(field.id + 'Error');
+            if (errorElement) {
+                errorElement.textContent = '';
+                errorElement.style.display = 'none';
+            }
+            
+            field.classList.remove('error');
+        }
+        
+        function clearAllErrors() {
+            const errorElements = document.querySelectorAll('.error-message');
+            errorElements.forEach(error => {
+                error.textContent = '';
+                error.style.display = 'none';
+            });
+            
+            const inputs = document.querySelectorAll('input, select, textarea');
+            inputs.forEach(input => {
+                input.classList.remove('error');
+            });
+        }
+        
+        function showSuccessMessage(message) {
+            // Remove existing messages
+            const existingMessages = document.querySelectorAll('.success-message');
+            existingMessages.forEach(msg => msg.remove());
+            
+            // Create success message element
+            const successDiv = document.createElement('div');
+            successDiv.className = 'success-message';
+            successDiv.textContent = message;
+            
+            document.body.appendChild(successDiv);
+            
+            // Remove after 5 seconds
+            setTimeout(() => {
+                successDiv.style.animation = 'slideOutRight 0.5s ease-in';
+                setTimeout(() => {
+                    if (successDiv.parentNode) {
+                        successDiv.parentNode.removeChild(successDiv);
+                    }
+                }, 500);
+            }, 5000);
+        }
+    </script>
+</body>
+</html>
